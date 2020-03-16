@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">WhiteboardDemo</string>
+    <string name="network_anomalies">Network is not available, please check the network!</string>
+    <string name="User_already_exists">User already existed!</string>
+    <string name="registration_failed_without_permission">Registration failed, without permission!</string>
+    <string name="Registration_failed">Registration failed</string>
+    <string name="illegal_user_name">Illegal user name</string>
+    <string name="register_exceed_service_limit">You have exceeded the limit of the community edition,Please upgrade to the enterprise edition</string>
+    <string name="Login_failed">Login failed:</string>
+    <string name="Join_failed">Join failed:</string>
+    <string name="Is_landing">joining..</string>
+    <string name="Join_room">Join room</string>
+    <string name="Room_name">Room name</string>
+    <string name="Room_password">Room password</string>
+    <string name="The_room_name_cannot_be_empty">The room name cannot be empty</string>
+    <string name="The_room_password_cannot_be_empty">The room password cannot be empty</string>
+    <string name="Room_does_not_exist_to_start_creating">Room does not exist to start creating...</string>
+
+</resources>

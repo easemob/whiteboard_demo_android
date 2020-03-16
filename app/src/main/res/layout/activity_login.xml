@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:src="@mipmap/demologo"
+            tools:layout_editor_absoluteX="117dp"
+            tools:layout_editor_absoluteY="147dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="环信"
+            android:textColor="#00acff"
+            android:textSize="50sp"
+            tools:layout_editor_absoluteX="203dp"
+            tools:layout_editor_absoluteY="146dp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="互动白板"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear" />
+
+    <EditText
+        android:id="@+id/room_name"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/edit_background"
+        android:hint="@string/Room_name"
+        android:paddingLeft="10dip"
+        android:singleLine="true"
+        android:textColor="#000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <EditText
+        android:id="@+id/room_pwd"
+        android:layout_width="275dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/edit_background"
+        android:hint="@string/Room_password"
+        android:paddingLeft="10dip"
+        android:singleLine="true"
+        android:textColor="#000"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/room_name" />
+
+    <Button
+        android:id="@+id/join_room"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_selector"
+        android:text="@string/Join_room"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/room_pwd"
+        app:layout_constraintVertical_bias="0.124" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
