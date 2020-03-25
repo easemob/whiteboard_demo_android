@@ -3,11 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:id="@+id/bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/top_bar_normal_bg"
+        android:gravity="center_vertical">
+
+        <RelativeLayout
+            android:id="@+id/back_layout"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:clickable="true">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:scaleType="centerInside"
+                android:src="@mipmap/ease_mm_title_back" />
+        </RelativeLayout>
+    </RelativeLayout>
 
     <WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+    </WebView>
 
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -148,14 +149,13 @@ public class LoginActivity extends Activity {
             progressShow = true;
             pd.show();
         }
-        EMClient.getInstance().conferenceManager().joinWhiteboardRoomWithId(EMClient.getInstance().getCurrentUser(), EMClient.getInstance().getAccessToken(), roomName.getText().toString(), roomPwd.getText().toString(), new EMValueCallBack<EMWhiteboard>() {
+        EMClient.getInstance().conferenceManager().joinWhiteboardRoomWithName(EMClient.getInstance().getCurrentUser(), EMClient.getInstance().getAccessToken(), roomName.getText().toString(), roomPwd.getText().toString(), new EMValueCallBack<EMWhiteboard>() {
             @Override
             public void onSuccess(EMWhiteboard emWhiteboard) {
                 if (!LoginActivity.this.isFinishing() && pd.isShowing()) {
                     pd.dismiss();
                 }
                 startActivity(new Intent(LoginActivity.this, MainActivity.class).putExtra("roomUrl", emWhiteboard.getRoomUrl()));
-                finish();
             }
 
             @Override
@@ -171,7 +171,6 @@ public class LoginActivity extends Activity {
                                     }
                                     emWhiteboard.getRoomId();
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class).putExtra("roomUrl", emWhiteboard.getRoomUrl()));
-                                    finish();
                                 }
 
                                 @Override
@@ -221,6 +220,15 @@ public class LoginActivity extends Activity {
             }
         }
         return val.toLowerCase(Locale.getDefault());
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            moveTaskToBack(false);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @TargetApi(23)

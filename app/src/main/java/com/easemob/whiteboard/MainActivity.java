@@ -3,19 +3,25 @@ package com.easemob.whiteboard;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.PermissionRequest;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.RelativeLayout;
+
+import com.hyphenate.util.EasyUtils;
 
 
 public class MainActivity extends Activity {
 
     private String roomUrl;
+    private RelativeLayout back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +32,15 @@ public class MainActivity extends Activity {
     }
 
     private void initView(){
+
+        back = findViewById(R.id.back_layout);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         WebView webview = findViewById(R.id.webview);
         webview.getSettings().setJavaScriptEnabled(true);
         //webview.addJavascriptInterface();//本地java对象映射给js调用
@@ -63,6 +78,11 @@ public class MainActivity extends Activity {
             }
 
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 
 }
