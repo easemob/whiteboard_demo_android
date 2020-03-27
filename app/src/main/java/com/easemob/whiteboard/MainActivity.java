@@ -4,10 +4,12 @@ package com.easemob.whiteboard;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.PermissionRequest;
+import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -15,13 +17,15 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
 
-import com.hyphenate.util.EasyUtils;
-
 
 public class MainActivity extends Activity {
 
     private String roomUrl;
     private RelativeLayout back;
+
+    public ValueCallback<Uri[]> mUploadMessage;
+
+    public final static int FIREHOUSE_RESULT_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +81,35 @@ public class MainActivity extends Activity {
                 });
             }
 
+            @Override
+            public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> uploadMsg, FileChooserParams fileChooserParams) {
+                openFileChooser(uploadMsg, fileChooserParams);
+                return true;
+            }
         });
+    }
+    private void openFileChooser(ValueCallback<Uri[]> uploadMsg, WebChromeClient.FileChooserParams fileChooserParams) {
+        mUploadMessage = uploadMsg;
+//        Intent intent = fileChooserParams.createIntent();
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        startActivityForResult(intent, FIREHOUSE_RESULT_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == FIREHOUSE_RESULT_CODE) {
+            if (null == mUploadMessage)
+                return;
+            Uri result = (intent == null || resultCode != RESULT_OK) ? null : intent.getData();
+            if (result != null) {
+                mUploadMessage.onReceiveValue(new Uri[]{result});
+            } else {
+                mUploadMessage.onReceiveValue(new Uri[]{});
+            }
+            mUploadMessage = null;
+        }
     }
 
     @Override
